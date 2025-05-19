@@ -1,0 +1,431 @@
+En scripts clients:
+Nous avons revu des principes de base de programmation comme les variables.
+Dans une variable on peut mettre toute une série de type de valeurs comme
+let prenom = "Pascal";   // une chaine de caractères
+let prix = 56.50;   // une valeur numérique (integer, float, ...)
+let isDisponible = true;   // Une valeur booléenne
+let etudiants = ["Ingrid", "Selim", "Fatima"];  // Un tableau indexé
+let produit = {name: "Disqueuse", price: 139.95};  // Un objet littéral
+let catalogue = [
+   {name: "Produit 1", price: 139.95};,
+   {name: "Produit 2", price: 159.95};
+];   // Un tableau indexé d'objets littéraux
+
+Pour utiliser ces variables:
+console.log(prenom);    // Pascal
+console.log(prix);     // 56.50
+console.log(isDisponible);    // true
+console.log(etudiants[1]);    // Selim
+console.table(etudiants);   // Affiche le tableau
+console.log(produit.name);   // Disqueuse
+console.table(produit);   // Affiche le produit
+console.log(catalogue[1].name);   // Produit 2
+console.table(catalogue);  // Affiche le catalogue
+
+Nous avons vu le concept de fonctions qui sont des sortes de variables dont le contenu
+n'est pas une valeur mais une ou plusieurs instructions qui ne seront déclenchées
+que lorsque l'on appellera cette fonction.
+3 syntaxes
+function disBonjour () {
+   return "Bonjour !";
+}
+const disBonjour =function () {
+   return "Bonjour !";
+}
+const disBonjour =  ()  => {
+   return "Bonjour !";
+}
+
+
+
+Nous avons vu la manière d'intercepter les éléments du DOM:
+Pour attraper les objets du DOM en JS
+
+// EN VANILLA JS
+	document.getElementById('id')
+	document.querySelector('selecteur css')
+	document.querySelectorAll('selecteur css')   Array indexé
+
+// EN JQUERY
+	$('selecteur css')
+
+On peut lire ou modifier les propriétés de ces objets:
+// Tous les attributs HTML sont des propriétés (src, name, checked)
+// innerHTML et innertText: le contenu de l'élément
+//
+//
+//
+/
+
+Bonjour à toutes et à tous,
+
+En apps statiques,
+Nous avons mis en place un début de framework CSS.
+L'idée parait simple:
+
+    Créer un fichier 'framework.css' que l'on pourrait ré-utiliser d'un projet à l'autre
+    comme on le fait avec materialize par exemple.
+    Ajouter un fichier 'app.css' qui surchargerait ce framework pour les élément spécifique au projet sur lequel on travaille actuellement
+    Un fichier 'variables.css' qui reprend les variables qui permettent de customiser le framework et qui sont également utilisable dans la surcharge.
+
+- variables.css : reprend les variables
+- framework.css: importe les variables et reprend les components et classes ré-utilisables
+- app.css: importe les variables et reprend les éléments spécifiques non ré-utilisables
+
+En ce qui concerne les propriétés, non devons retenir celles-ci:
+Propriété CSS
+
+	Générales:
+		- transition
+
+	Boites:
+		- box-sizing
+		- display
+		- width, max-width
+		- height, max-height
+		- overflow
+		- background
+		- border
+		- border-radius
+		- padding
+		- margin
+		- box-shadow
+                - float
+                - clear
+
+	Textes:
+		- color
+		- font-family
+		- font-size
+		- font-weight
+		- text-align
+		- text-decoration
+		- text-transform
+		- line-height
+
+On a également vu la propriété float:
+Elle sert à faire flotter une boite à gauche ou à droite et créer un habillage de cette boite par le texte.
+Pour que tout fonctionne bien, il faut que la boite ne prenne pas toute la largeur sinon, pas d'habillage possible.
+Une fois qu'on met la propriété float:
+1. la largeur de la boite devient celle de son contenu (comme un inline-block)
+2. le texte qui suit la boite fait un habillage (tourne autour)
+3. la boite sort du flux, c'est à dire qu'elle n'intervient plus dans la hauteur de son parent.
+
+Du coup, il faut parfiois faire un truc bizarre pour forcer le parent à tenir compte de cette boite pour sa hauteur, c'est de placer fictivement un contenu block et de casser m'habillage.
+
+.float-left::after {
+   content: '';
+   display: block;
+   clear:both;
+}
+A FAIRE: Lire les ateliers inline-block et flex !!!
+
+
+En scripts serveurs:
+On a vu le principe du routing en PHP.
+Tout se base sur la fonction isset() qui permet de tester l'existence d'une variable.
+Le template est la partie du fichier qui reprend le code HTML du site web.
+Dans ce template, on affiche la ou les zones dynamiques
+<nav>
+    <ul>
+        <li><a href="?">Produits</a>
+        <li><a href="?contacts">Contacts</a>
+   </ul>
+</nav>
+<main>
+   <?php echo $content; ?>
+</main>
+
+Et le rôle du router est de mettre du contenu dans $content en fonction de ce qui se passe dans l'URL.
+
+ROUTE Détail d'un produit
+PATTERN: /?articleID=x
+if (isset($_GET['productID'])) :
+    $content = "<h1>Page de détail du produit n° {$_GET['articleID']}</h1>";
+
+ROUTE CONTACTS
+PATTERN: /?contacts
+elseif (isset($_GET['contacts'])) :
+    $content = "<h1>Page Contacts</h1>";
+
+ROUTE PAR DEFAUT
+PATTERN: /?
+else:
+    $content = "
+         <h1>Liste des produits</h1>
+         <ul>
+               <li><a href='?productID=1'>Produit 1</a></li>
+               <li><a href='?productID=2'>Produit 2</a></li>
+               <li><a href='?productID=3'>Produit 3</a></li>
+        </ul>
+";
+
+Ce qui veut dire que lorsque on va cliquer sur un des liens de le liste, il y aura une variable d'URL nommée 'articleID' et que donc, on passera par la route du détail ...
+
+A faire: refaites cet atelier 10000 fois.
+
+En scripts clients:
+On a travaillé sur l'interactivité
+Rendre interactif 1 seul élément à la fois
+
+    document.getElementById('lien1').onclick = function () {};
+    document.querySelector('#lien1').onclick = function () {};
+
+3 choses qu'on peut faire en JS
+1. Lire les propriétés des objets
+    objet.propriete
+
+        document.title
+        window.availWidth
+        document.querySelector('#target').innerText
+        this.dataset.msg
+
+        Tous les attributs HTML des objets sont des propriétés JS (href, id, )
+        innertText, innerHTML, outerHTML
+        dataset.xxx
+        style.xxx
+
+2. Modifier les propriétés des objets
+    objet.propriete = "valeur";
+
+        document.title = "Coucou";
+        document.querySelector('#target').innerText = "Coucou";
+        this.dataset.msg = "Coucou";
+
+        Tous les attributs HTML des objets sont des propriétés JS (href, id, )
+        innertText, innerHTML, outerHTML
+        dataset.xxx
+        style.xxx
+
+
+3. Actionner les méthodes des objets
+        objet.methode(...)
+
+            window.alert("coucou"); console.log("coucou");
+            document.querySelector('#target').innerText.toUpperCase();
+            this.innerText.toUpperCase();
+
+            objet.classList.add('test')
+            objet.classList.remove('test')
+            objet.classList.toggle('test')
+
+
+    const div1 = document.getElementById("div1");
+
+      // On le positionne initialement au centre de la fenêtre
+      let currentLeft = 0;
+      let currentTop = 0;
+
+      // Quand on appuye sur la flèche droite
+      // On déplace de 10px le carré vers la droite
+      document.addEventListener("keydown", function (e) {
+        switch (e.key) {
+          case "ArrowLeft":
+            currentLeft = currentLeft >= 0 ? currentLeft - 10 : 0;
+            break;
+          case "ArrowUp":
+            currentTop = currentTop >= 0 ? currentTop - 10 : 0;
+            break;
+          case "ArrowRight":
+            currentLeft =
+              currentLeft <= window.innerWidth
+                ? currentLeft + 10
+                : window.innerWidth;
+            break;
+          case "ArrowDown":
+            currentTop =
+              currentTop <= window.innerHeight
+                ? currentTop + 10
+                : window.innerHeight;
+            break;
+        }
+        div1.style.marginLeft = currentLeft + "px";
+        div1.style.marginTop = currentTop + "px";
+      });
+
+
+let prenom = "Pascal";
+let prix = 56.90;
+let isCool = true;
+const friends = ["Fabrice", "Fatima", "Inge"];
+const produit = {
+   name: "Banane",
+   price: 0.67,
+   description: "une belle banane"
+};
+const products = [
+   {name: "Produit 1", price: 34.90},
+   {name: "Produit 2", price: 44.90},
+   {name: "Produit 3", price: 54.90},
+];
+
+On a vu que le JS est un langage est orienté objet.
+Une objet c'est un truc avec des propriétés et des méthodes.
+
+On peut
+- lire des propriétés d'objet: objet.propriété
+   document.title
+- Modifier les propriété des objets: objet.propriété = "valeur"
+  document.title = "Coucou";
+- actionner les méthodes des objets: objet.methode(...)
+   document.write("Coucou");
+   console.log(prenom);
+   console.friends[1]);
+   console(produit.name);
+   console.products[1].name);
+   console.table(friends);
+   console.table(products);
+
+A FAIRE: finir les ateliers des éléments du langage
+
+En scripts clients:
+Nous avons continué à capturer des evt sur plusieurs objets pour mettre en place des composant UI et vu la méthode closest() pour partir de l'élément actif et remonter à son parent.
+  trigger.addEventListener("click", function (e) {
+          e.preventDefault();
+          // On toggle sur le content du trigger
+          this.closest(".dropdown")
+                 .querySelector(".dropdown-content")
+                 .classList.toggle("active");
+        });
+      });
+
+Si on doit parcourir un tableau indexé -> la boucle for of
+const etudiants = ["Jérôme", "Magali", "Shania"];
+for (etudiant of etudiants) {
+   document.write('<li>'+.etudiant +'</li>');
+}
+
+ou
+
+etudiants.forEach(function (etudiant) {
+document.write('<li>'+.etudiant +'</li>');
+});
+
+Nous avons également vu les tests.
+Le simple test (1 seule possibilité)
+const age : window.prompt("Quel âge as-tu ?");
+if (age >= 18){
+   document.write("Tu es majeur");
+}
+
+Le test binaire (2 possibilités)
+const age : window.prompt("Quel âge as-tu ?");
+if (age >= 18){
+   document.write("Tu es majeur");
+} else {
+   document.write("Tu es mineur");
+}
+
+Attention, JAMAIS de parenthèses dans un else.
+
+Le test complet (plus de 2 possibilités)
+const age : window.prompt("Quel âge as-tu ?");
+if (age >= 18){
+   document.write("Tu es majeur");
+} else if (age < 18)  {
+   document.write("Tu es mineur");
+} else   {
+   document.write("Veux-tu bien taper un âge correct stp !");
+}
+
+Pour établir les conditions:
+10 == "10". (true)
+10 === "10". (false)
+a != b (différent de)
+a !== b (différent de b)
+a > b
+a >=b
+a < b
+a <= b
+
+
+
+En approche frontend:
+Nous avons revu la manière de rendre un élément du DOM interactif:
+
+CAPTURER UN ÉVÉNEMENT SUR UN OBJET
+	objet.onclick = function () {...};
+
+exemple:
+        document.getElementById('lien1').onclick = function () {...};
+        document.querySelector('#lien1').onclick = function () {...};
+
+QUE PEUT-ON FAIRE UNE FOIS L'EVENEMENT CAPTURÉ ?
+
+    Lire les propriété des objets: objet.propriété
+    Modifier les propriétés des objets: objet.propriété = "valeur";
+    Actionner les méthodes des objets: objet.methode(...)
+
+	Attraper objet à la fois
+		Par son id: document.getElementById()
+		Par son sélecteur CSS : document.querySelector()
+
+ 	Lire ou modifier les propiétés des objets:
+ 	const objet = document.getElementById() ou document.querySelector()
+ 		objet.innerText : 			Contenu textuel de la balise
+ 		objet.style.color: 			Propriété css color de l'objet
+ 		objet.style.fontSize: 		Propriété css font-size de l'objet
+		objet.classList.add():  	Ajouter une classe à l'objet
+		objet.classList.remove():  	Supprimer une classe à l'objet
+		objet.classList.toggle():  	Ajouter/Supprimer une classe à l'objet
+
+CAPTURER UN ÉVÈNEMENT SUR UN OBJET
+	document.getElementById().onclick = function () { ... };
+	document.querySelector().onclick  = function () { ... };
+
+A FAIRE: les ateliers 4.03 et 4.04 du kit de survie (campus)
+
+En scripts clients, nous avons mis en place notre petite app multimedia SONIC BOOM.
+L'idée est simple.
+On charge les fichiers multimedia via des balises audio et video en preload et loop.
+
+On les répartit par "types de media" via une double class="media drums"
+Du coup, quand on appuie sur une touche des drums, on commence pas
+arrêter tous les drums et les rebobiner avec un pause() et un currentTime = 0
+puis on fait play().
+
+On a ensuite sorti le stop dans une fct qui stoppe les média selon leur classe et hop ...
+
+A FAIRE: terminez avec les basses et les oneshot.
+
+A approche Front:
+Voici où nous en sommes:
+MANIPULER LES OBJETS DU DOM
+
+	Attraper un objet à la fois
+		Par son id: document.getElementById()
+		Par son sélecteur CSS : document.querySelector()
+
+	Attraper plusieurs objet à la fois
+		document.querySelectorAll(...)
+
+ 	Lire ou modifier les propiétés des objets:
+ 	const objet = document.getElementById() ou document.querySelector()
+ 		objet.innerText : 			Contenu textuel de la balise
+ 		objet.style.color: 			Propriété css color de l'objet
+ 		objet.style.fontSize: 		Propriété css font-size de l'objet
+		objet.classList.add():  	Ajouter une classe à l'objet
+		objet.classList.remove():  	Supprimer une classe à l'objet
+		objet.classList.toggle():  	Ajouter/Supprimer une classe à l'objet
+
+		objet.querySelector(): 		Attraper le 1er enfant correspondant
+		objet.querySelectorAll(): 	Attraper tous les enfants correspondants
+		objet.closest(): 			Attraper le 1er parent correspondant
+		objet.parents(): 			Attraper tous les parents correspondants
+
+CAPTURER UN ÉVÈNEMENT SUR UN OBJET
+	document.getElementById(...).onclick = function () { ... };
+	document.querySelector(...).onclick  = function () { ... };
+
+
+CAPTURER UN ÉVÈNEMENT SUR PLUSIEURS OBJETS
+	document.querySelectorAll(...).forEach(function(item){
+		item.onclick = function(){...};
+	});
+
+Nous avons démarré une app multimédia.
+A FAIRE: plonger dans le code de notre app SONIC BOOM que nous allons terminer.
+
+En scripts clients:
+nous avons mis en place un composant UI de type bouton avec un effet waves quand on clique dessus. L'idée est de créer des nouveaux div avec une animation et les placer à l'intérieur des btn.
+A FAIRE: tenter les différents composants proposés sur le kit de survie.

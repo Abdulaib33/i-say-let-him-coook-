@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics Core Concepts</title>
+
+
+    <!-- 1. CDN -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+</head>
+<body>
+    
+    <style>
+        body {
+            background-color: Canvas;
+            color: CanvasText;
+            color-scheme: light dark;
+        }
+    </style>
+
+
+    <!-- 2. x-data="app()" -->
+     <script>
+        function app() {
+            return {
+                prop1: 'valeur 1',
+                prop2: [],
+                prop3: {},
+                meth1() {
+                    alert("Method 1 called");
+                }
+            }
+        }
+
+     </script>
+
+
+    <!-- 3. x-text -->
+     <div x-data="app()">
+        <p x-text="prop1"></p>
+     </div>
+
+
+     <!-- 4. template x-for -->
+     <div x-data="app()">
+        <template x-for="item in prop2" :key="item">
+            <p x-text="item"></p>
+        </template>
+     </div>
+
+
+
+     <!-- 5. x-model -->
+     <div x-data="{message: ''}">
+        <input x-model="message" type="text">
+        <p x-text="message"></p>
+     </div>
+
+
+
+     <!-- 6. x-show -->
+     <div x-data="{show: true}">
+        <button @click="show = !show">Toggle</button>
+        <p x-show="show">Now you    see me</p>
+     </div>
+
+
+
+     <!-- 7. @click.prevent -->
+     <div x-data>
+        <a href="#" @click.prevent="alert('Clicked')">Click me</a>
+     </div>
+</body>
+</html>
