@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart 1</title>
+    <title>Shopping Cart 2</title>
 
     <!-- 1. CDN -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+
 </head>
 <body>
-
 
     <div x-data="shopApp()">
         <h2>Products</h2>
@@ -19,23 +19,25 @@
         <template x-for="product in products" :key="product.id">
             <div style="border: 1px solid #ccc; margin: 10px 0;">
                 <h3 x-text="product.name"></h3>
-                <p>Price: <span x-text="product.price"></span>€</p>
+                <p>Price € <span x-text="product.price"></span></p>
             </div>
         </template>
+
     </div>
 
 
+    
     <script>
         function shopApp() {
             return {
                 products: [
-                    {id: 1, name: 'Laptop', price: 899.99},
+                    {id: 1, name: "Laptop", price: 899.99},
                     {id: 2, name: "Smartphone", price: 499.99},
-                    {id: 3, name: "Headphones", price: 149.99},
+                    {id: 3, name: "Headphone", price: 149.99},
                 ]
             }
         }
     </script>
-    
+
 </body>
 </html>
