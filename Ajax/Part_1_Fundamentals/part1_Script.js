@@ -39,6 +39,7 @@ async function createUser() {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ name: 'Alice', job: 'Developper'})
         })
+        
         if (!response.ok) throw new Error("Failed to create user")
         const data = await response.json()
         console.log('User Created', data)
