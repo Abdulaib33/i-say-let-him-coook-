@@ -2,11 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
     loadUsers()
 })
 
+const API_KEY = 'reqres-free-v1'
 
 async function loadUsers() {
     try {
 
-        const response = await fetch("https://reqres.in/api/users?page=1")
+        const response = await fetch("https://reqres.in/api/users?page=2", {
+            headers: {
+                'x-api-key': API_KEY,
+                'Accept': 'application/json'
+            }
+        })
         if (!response.ok) throw new Error('Failed to fetch users')
 
         const data = await response.json()
