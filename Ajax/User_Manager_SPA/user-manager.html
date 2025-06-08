@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manager</title>
+
+    <!-- 🔧 Project Plan: "User Manager SPA"
+We'll use HTML + JavaScript (only fetch, async/await) to:
+
+Fetch and display users (GET)
+
+Add a user (POST)
+
+Edit a user (PUT)
+
+Delete a user (DELETE)
+
+📡 API: We’ll use https://reqres.in — a free fake API that supports all these operations. -->
+</head>
+
+<style>
+    body { font-family: sans-serif; padding: 2rem;}
+    #user-list { margin-top: 1rem;}
+    .user { margin-bottom: 1rem; border-bottom: 1px solid #ccc; padding: 0.5rem 0;}
+    button { margin-left: 0.5rem;}
+</style>
+<body>
+
+
+    <h1> User Manager </h1>
+
+
+    <form id="add-user-form">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="text" id="job" placeholder="Job" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <div id="user-list"></div>
+
+    <script src="user-manager.js"></script>
+
+</body>
+</html>
