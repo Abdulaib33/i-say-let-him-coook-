@@ -20,7 +20,11 @@ function createUser($pdoConnexion, $name, $job) {
         INSERT INTO users (name, job) VALUES (?, ?)
     ");
     $stmt->execute([$name, $job]);
-    return ['id' => $pdoConnexion->lastInsertId(), 'name' => $name, 'job' => $job];
+    return [
+        'id' => $pdoConnexion->lastInsertId(),
+        'name' => $name,
+        'job' => $job
+    ];
 }
 
 
