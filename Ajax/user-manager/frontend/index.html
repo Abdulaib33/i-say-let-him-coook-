@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue User Manager</title>
+
+     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+    <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    input, button { margin: 0.5rem; }
+    .user { margin-bottom: 1rem; border-bottom: 1px solid #ccc; padding: 0.5rem 0; }
+  </style>
+
+</head>
+<body>
+
+    <div id="app">
+        <h1>User Manager</h1>
+
+        <form @submit.prevent="addUser">
+            <input v-model="form.name" placeholder="Name" required>
+            <input v-model="form.job" placeholder="job" required>
+            <button>Add User</button>
+        </form>
+
+        <div v-if="error" style="color: red;">{{ error }}</div>
+
+        <div v-for="user in users" :key="user.id" class="user">
+            <strong>{{ user.name }}</strong> - {{ user.job }}
+            <button @click="editUser(user)">Edit</button>
+            <button @click="deleteUser(user.id)">Delete</button>
+        </div>
+
+    </div>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>
