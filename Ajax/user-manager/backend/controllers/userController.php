@@ -3,7 +3,8 @@
 // controllers/userController.php
 
 
-require_once "../models/userModel.php";
+require_once __DIR__ . '/../models/userModel.php';
+
 
 function handleGet($pdoConnexion) {
     $users = getAllUsers($pdoConnexion);

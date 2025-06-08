@@ -16,7 +16,7 @@ createApp({
         async fetchUsers() {
             try {
 
-                const res = await fetch('/backend/api.php/users')
+                const res = await fetch('../backend/api.php/users')
                 if (!res.ok) throw new Error('Failed to fetch users')
                 this.users = await res.json()
 
@@ -28,7 +28,7 @@ createApp({
         async addUser() {
             try {
 
-                const res = await fetch('backend/api.php/users', {
+                const res = await fetch('../backend/api.php/users', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json'},
                     body: JSON.stringify(this.form)
@@ -50,7 +50,7 @@ createApp({
             if (!confirm('Delete this user?')) return;
             try {
 
-                const res = await fetch(`/backend/api.php/users/${id}`, {
+                const res = await fetch(`../backend/api.php/users/${id}`, {
                     method: 'DELETE'
                 })
                 if (!res.ok) throw new Error('Failed to delete user')
@@ -68,7 +68,7 @@ createApp({
 
             try {
 
-                const res = await fetch(`/backend/api.php/users/${user.id}`, {
+                const res = await fetch(`../backend/api.php/users/${user.id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json'},
                     body: JSON.stringify({name: newName, job: newJob})
