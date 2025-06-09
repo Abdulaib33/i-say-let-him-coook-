@@ -36,5 +36,5 @@ if ($segments[0] === 'backend' && $segments[1] === 'api.php' && $segments[2] ===
 
 } else {
     http_response_code(404);
-    echo json_encode(['error' => 'Not found']);
+    echo json_encode(['error' => 'Not founds']);
 }
