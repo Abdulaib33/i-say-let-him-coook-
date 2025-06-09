@@ -2,43 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
-
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
-  <style>
-    body { font-family: sans-serif; margin: 2rem; background: #1e1e1e; color: #eee; }
-    input, button { margin: 0.5rem; padding: 0.3rem; }
-    .task { margin-bottom: 1rem; border-bottom: 1px solid #555; padding-bottom: 0.5rem; }
-  </style>
-
+    <style>
+        body { font-family: sans-serif; background: #111; color: #fff; padding: 2rem; }
+        input, button { margin: 0.5rem; }
+        .task { margin-bottom: 1rem; border-bottom: 1px solid #666; padding-bottom: 0.5rem; }
+    </style>
 </head>
 <body>
-    
-    <div id="app">
-        <h1>Task Tracker</h1>
 
+<div id="app">
+    <h1>Task Tracker</h1>
 
-        <form @submit.prevent="addTask">
-            <input v-model="form.title" placeholder="Task title" required>
-            <input v-model="form.description" placeholder="Task description" required>
-            <button> Add Task</button>
-        </form>
+    <form @submit.prevent="addTask">
+        <input v-model="form.title" placeholder="New task" required>
+        <button>Add</button>
+    </form>
 
-        <div v-if="error" style="color: red;">{{ error }}</div>
+    <div v-if="error" style="color: red;">{{ error }}</div>
 
-        <div v-for="task in tasks" :key="task.id" class="task">
-            <strong>{{ task.title }}</strong> : {{ task.description }}
-            <button @click="editTask(task)">Edit</button>
-            <button @click="deleteTask(task.id)">Delete</button>
-        </div>
-
-
+    <div v-for="task in tasks" :key="task.id" class="task">
+        {{ task.title }}
+        <button @click="editTask(task)">Edit</button>
+        <button @click="deleteTask(task.id)">Delete</button>
     </div>
+</div>
 
-
-    <script src="app.js"></script>
-
+<script src="app.js"></script>
 </body>
 </html>

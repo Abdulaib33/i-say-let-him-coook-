@@ -1,57 +1,21 @@
-<?php 
+<?php
 
-// backend/models/taskModel.php
-
-
-function getAllTasks($pdoConnexion) {
-    $stmt = $pdoConnexion->query("
-            SELECT *
-            FROM tasks
-            ORDER BY id DESC
-    ");
+function getAllTasks($pdo) {
+    $stmt = $pdo->query("SELECT * FROM tasks ORDER BY id DESC");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
-
-function createTask($pdoConnexion, $data) {
-    $stmt = $pdoConnexion->prepare("
-        INSERT INTO tasks (title, status) 
-        VALUES (:title, :status)
-    ");
-
-    $stmt->execute([
-        ':title' => $data['title'],
-        ':status' => $data['status']
-    ]);
-
-    return $pdoConnexion->lastInsertId();
+function addTask($pdo, $title) {
+    $stmt = $pdo->prepare("INSERT INTO tasks (title) VALUES (:title)");
+    $stmt->execute(['title' => $title]);
 }
 
-
-
-function updateTask($pdoConnexion, $id, $data) {
-    $stmt = $pdoConnexion->prepare("
-        UPDATE tasks SET title = :title,
-               status = :status
-               WHERE id = :id
-    ");
-
-    return $stmt->execute([
-        ":title" => $data['title'],
-        ":status" => $data['status'],
-        ":id" => $id
-    ]);
+function updateTask($pdo, $id, $title) {
+    $stmt = $pdo->prepare("UPDATE tasks SET title = :title WHERE id = :id");
+    $stmt->execute(['id' => $id, 'title' => $title]);
 }
 
-
-
-function deleteTask($pdoConnexion, $id) {
-    $stmt = $pdoConnexion->prepare("
-        DELETE FROM tasks 
-        WHERE id = :id
-    ");
-    return $stmt->execute([
-        ':id' => $id
-    ]);
+function deleteTask($pdo, $id) {
+    $stmt = $pdo->prepare("DELETE FROM tasks WHERE id = :id");
+    $stmt->execute(['id' => $id]);
 }

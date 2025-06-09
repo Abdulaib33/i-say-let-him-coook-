@@ -1,52 +1,34 @@
-<?php 
+<?php
 
-// backend/controllers/taskController.php
+require_once __DIR__ . '/../models/taskModel.php';
 
-
-require_once __DIR__ . "/../models/taskModel.php";
-
-function handleGet($pdoConnexion) { 
-
-    $tasks = getAllTasks($pdoConnexion);
-    echo json_decode($tasks);
-
+function handleGet($pdo) {
+    echo json_encode(getAllTasks($pdo));
 }
 
-function handlePost($pdoConnexion) {
-
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    if (!isset($data['title']) || !isset($data['status'])) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Missing title or status']);
-        return;
-    }
-
-    $id = createTask($pdoConnexion, $data);
-    echo json_encode(['message' => 'Task created', 'id' => $id]);
-
-}
-
-
-
-function handlePut($pdoConnexion, $id) {
+function handlePost($pdo) {
     $data = json_decode(file_get_contents('php://input'), true);
-
-    if (!isset($data['title']) || !isset($data['status'])) {
+    if (!isset($data['title']) || !$data['title']) {
         http_response_code(400);
-        echo json_encode(['error' => 'Missing title or status']);
+        echo json_encode(['error' => 'Title is required']);
         return;
     }
-
-    $success = updateTask($pdoConnexion, $id, $data);
-    echo json_encode(['message' => $success ? 'Task updated' : 'Update failed']);
+    addTask($pdo, $data['title']);
+    echo json_encode(['message' => 'Task added']);
 }
 
+function handlePut($pdo, $id) {
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (!isset($data['title']) || !$data['title']) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Title is required']);
+        return;
+    }
+    updateTask($pdo, $id, $data['title']);
+    echo json_encode(['message' => 'Task updated']);
+}
 
-
-function handleDelete($pdoConnexion, $id) {
-
-    $success = deleteTask($pdoConnexion, $id);
-    echo json_encode(['message' => $success ? 'task delete' : 'failed delete']);
-
+function handleDelete($pdo, $id) {
+    deleteTask($pdo, $id);
+    echo json_encode(['message' => 'Task deleted']);
 }
