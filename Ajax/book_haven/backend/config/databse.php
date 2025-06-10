@@ -18,3 +18,5 @@ try {
     die(json_encode(['error' => 'Database connection failed' . $e->getMessage()]));
 
 }
+
+var_dump($connexion);

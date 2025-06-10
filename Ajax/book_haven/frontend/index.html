@@ -17,7 +17,19 @@
   <div id="app">
     <h1>📚 Book Haven</h1>
 
+    <form @submit.prevent="addBook">
+      <input v-model="form.title" placeholder="Title" required>
+      <input v-model="form.author" placeholder="Author" required>
+      <button>Add Book</button>
+    </form>
 
+    <div v-if="error" style="color: red;">{{ error }}</div>
+
+    <div v-for="book in books" :key="book.id" class="book">
+      <strong>{{ book.title }}</strong> by {{ book.author }}
+      <button @click="editBook(book)">Edit</button>
+      <button @click="deleteBook(book.id)">Delete</button>
+    </div>
   </div>
 
   <script src="app.js"></script>
