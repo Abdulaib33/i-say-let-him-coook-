@@ -1,6 +1,6 @@
 const { createApp } = Vue
 
-const BASE_URL = '/one-shot-eafc/JAVASCRIPT/Ajax/book-haven/backend/api.php/books'
+const BASE_URL = '/one-shot-eafc/JAVASCRIPT/Ajax/book_haven/backend/api.php/books'
 
 
 createApp({
