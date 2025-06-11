@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello - Vue</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    body {
+        background-color: Canvas;
+        color: CanvasText;
+        color-scheme: light dark;
+    }
+    
+    .done {
+        text-decoration: line-through;
+        color: gray;
+    }
+</style>
+</head>
+<body>
+
+
+    <div id="app">
+
+        <h1>{{ test }}</h1>
+
+
+        <p>Enter your name below:</p>
+
+        <input type="text" v-model="firstName" placeholder="Enter your First Name"> <input type="text" v-model="lastName" placeholder="Enter your Last Name">
+
+        <p>Your full name is : <strong>{{ fullName }}</strong></p>
+
+    </div>
+
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                    test: "All praise is due to Allah & Allah is the Greatest",
+                    firstName: '',
+                    lastName: ''
+                }
+            },
+
+            computed: {
+                fullName() {
+                    return this.firstName + " " + this.lastName
+                }
+            }
+        })
+
+        app.mount("#app")
+    </script>
+    
+</body>
+</html>
