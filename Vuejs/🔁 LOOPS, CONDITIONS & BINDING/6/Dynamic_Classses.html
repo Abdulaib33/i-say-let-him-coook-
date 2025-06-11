@@ -12,21 +12,53 @@
         color: CanvasText;
         color-scheme: light dark;
     }
+    
+    .done {
+        text-decoration: line-through;
+        color: gray;
+    }
 </style>
 </head>
 <body>
 
     <div id="app">
-            {{ test }}
+        <h1>{{ test }}</h1>
+            <ul>
+                <li 
+                    v-for="item in lists"
+                    :key="item.id"
+                    :class="{done: item.done}"
+                    @click="toggleDone(item)"
+                >
+
+                {{ item.text }}
+
+                </li>
+            </ul>
+
     </div>
     
     <script>
         const app = Vue.createApp({
             data() {
                 return{
-                    test: "re"
+                    test: "Allah is the Greatest & All praise is due to Allah",
+                    lists: [
+                        {id: 1, text: "Task 1", done: false},
+                        {id: 2, text: "Task 2", done: true},
+                        {id: 3, text: "Task 3", done: false},
+                        {id: 4, text: "Task 4", done: true},
+                        {id: 5, text: "Task 5", done: false}
+                    ]
                 }
-            }
+            },
+            
+            methods: {
+                toggleDone(item) {
+                    item.done = !item.done
+                }
+            },
+
         })
 
         app.mount("#app")
