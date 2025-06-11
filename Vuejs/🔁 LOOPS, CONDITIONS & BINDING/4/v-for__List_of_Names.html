@@ -16,30 +16,31 @@
 </head>
 <body>
 
+    <div id="app">
+        <h1> {{ test }}</h1>
 
-<div id="app">
+        <ul>
+            <li v-if="foods.length === 0">No items found</li>
+            <li v-for="food in foods" v-else>
+                {{ food || "Unamed item" }}
+            </li>
+        </ul>
 
-    <h1>{{ test }}</h1>
-
-    <p>{{ message }}</p>
-
-    <button @click="reverseMessage()">Reverse</button>
-
-</div>
+    </div>
 
 
     <script>
         const app = Vue.createApp({
             data() {
                 return {
-                    test: "coucou",
-                    message: "NON1"
-                }
-            },
+                    test: 'empty',
 
-            methods: {
-                reverseMessage() {
-                    return this.message = this.message.split('').reverse().join('')
+                    foods: [
+                        "fruit",
+                        "legumes",
+                        "",
+                        "dessert"
+                    ]
                 }
             }
         })
