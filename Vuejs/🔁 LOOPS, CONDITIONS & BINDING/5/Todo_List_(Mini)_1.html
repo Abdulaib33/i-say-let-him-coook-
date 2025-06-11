@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello - Vue</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    body {
+        background-color: Canvas;
+        color: CanvasText;
+        color-scheme: light dark;
+    }
+</style>
+</head>
+<body>
+
+    <div id="app">
+        
+        <input type="text" v-model="inputValue">
+        <button @click="addLists()"> Add Task</button>
+        <ul v-for="(list, index) in lists" :key="index">
+            <li>
+                {{ list }} 
+                <button @click="deleteList(index)">
+                    delete
+                </button>
+            </li>
+        </ul>
+
+    </div>
+
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    test: "test",
+                    inputValue: "",
+                    lists: []
+                }
+            },
+
+            methods: {
+                addLists() {
+                    if (this.inputValue.trim !== "") {
+                        this.lists.push(this.inputValue) 
+                        this.inputValue = ""
+                    }
+                },
+
+                deleteList(index) {
+                    this.lists.splice(index, 1)
+                }
+            },
+        })
+
+        app.mount("#app")
+    </script>
+    
+</body>
+</html>

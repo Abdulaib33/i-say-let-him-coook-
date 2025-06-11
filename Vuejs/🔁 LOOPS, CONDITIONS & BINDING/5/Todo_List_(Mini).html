@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello - Vue</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    body {
+        background-color: Canvas;
+        color: CanvasText;
+        color-scheme: light dark;
+    }
+</style>
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{ test }}</h1>
+
+        <ul v-for="(list, index) in lists" :key="index">
+            <li>{{ list }} <button @click="deleteList(task)"> Delete</button></li>
+        </ul>
+        <input type="text" v-model="listValue">
+        <button @click="addList()">add</button>
+    </div>
+
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                    test: "Alhamdoulilah",
+                    lists: [],
+                    listValue: ""
+                }
+            },
+
+            methods: {
+                addList() {
+                    if(this.listValue.trim !== "") {
+                        this.lists.push(this.listValue)
+                        this.listValue = ""; // Clear input after adding task
+                    }
+                },
+
+                deleteList(index) {
+                    this.lists.splice(index, 1) // Remove task from array
+                }
+            }
+        })
+
+        app.mount("#app")
+    </script>
+    
+</body>
+</html>
