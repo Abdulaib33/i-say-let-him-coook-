@@ -16,7 +16,10 @@
 </head>
 <body>
 
-
+    <div id="app">
+        <h1>Counter <span> {{ count }} </span></h1>
+        <button @click="incriment()">Incriment </button> <button @click="decrement()"> Decrement </button>
+    </div>
 
 
 
@@ -24,10 +27,26 @@
         const app = Vue.createApp({
             data() {
                 return {
-                    
+                    test: "coucou",
+                    count: 1
                 }
-            }
+            },
+
+            methods: {
+                incriment() {
+                    this.count += 1
+                },
+                decrement() {
+                    this.count -= 1
+                }
+            },
+
+            // mounted() {
+            //     this.incriment()
+            // }
         })
+
+        app.mount("#app")
     </script>
     
 </body>
