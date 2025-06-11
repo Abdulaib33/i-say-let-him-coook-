@@ -1,5 +1,6 @@
 const { createApp } = Vue
 
+// Renamed book-haven to book_haven and updated BASE_URL in app.js
 const BASE_URL = '/one-shot-eafc/JAVASCRIPT/Ajax/book_haven/backend/api.php/books'
 
 
@@ -7,7 +8,8 @@ createApp({
     data() {
         return {
             books: [],
-            form: {title: '', author: ''}
+            form: {title: '', author: ''},
+            error: ''
         }
     },
 

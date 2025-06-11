@@ -19,4 +19,4 @@ try {
 
 }
 
-var_dump($connexion);
+// var_dump($connexion);
