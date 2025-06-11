@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello - Vue</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    body {
+        background-color: Canvas;
+        color: CanvasText;
+        color-scheme: light dark;
+    }
+</style>
+</head>
+<body>
+
+
+<div id="app">
+
+    <h1>{{ test }}</h1>
+
+    <p>{{ message }}</p>
+
+    <button @click="reverseString()">Reverse</button>
+
+</div>
+
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    test: "coucou",
+                    message: "NON1"
+                }
+            },
+
+            methods: {
+                reverseString() {
+                    return this.message = this.message.split('').reverse().join('')
+                }
+            }
+        })
+
+        app.mount("#app")
+    </script>
+    
+</body>
+</html>
