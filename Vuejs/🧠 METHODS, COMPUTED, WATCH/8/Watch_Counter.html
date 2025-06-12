@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello - Vue</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    body {
+        background-color: Canvas;
+        color: CanvasText;
+        color-scheme: light dark;
+    }
+    
+    .done {
+        text-decoration: line-through;
+        color: gray;
+    }
+</style>
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{ test }}</h1>
+
+        <p>Counter: <span>{{ count }}</span></p>
+        <button @click="incriment">Incriment</button> <button @click="decrement">Decrement</button>
+
+    </div>
+
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    test: "Allah is the Greatest & All Praise is due to Allah",
+                    count: 0
+                }
+            },
+
+            methods: { // the methods is used to write and execute function, the function can only be used if they are called
+                incriment() {
+                    this.count += 1
+                }, 
+                decrement() {
+                    this.count -= 1
+                }
+            },
+
+            watch: {
+                count(val) { // it watches our count variables, to see if it change it's value, it observe it value by the val in count(val)
+                    if(val > 10) {
+                        alert("it's above")
+                    }
+                }
+            }
+        })
+
+        app.mount("#app")
+    </script>
+    
+</body>
+</html>
