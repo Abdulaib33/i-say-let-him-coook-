@@ -61,3 +61,51 @@ console.log(person1.address.city) // Liège
 
 
 
+
+
+// 3. Loop over an object:
+    // Use for...in, Object.keys(), Object.entries() to:
+        // Print all keys.
+        // Print all values.
+        // Print "key: value" pairs.
+
+
+const person2 = {
+    name: "Abdoulaye",
+    age: 22,
+    address: {
+        street: "Rue de Hesbaye 206",
+        city: "Liège"
+    }
+}
+
+for (let x in person2) {
+    console.log(x) // name, age, address
+
+    console.log(person2[x]) // name
+                            // Abdoulaye
+                            // age
+                            // 22
+                            // address
+                            // {street: 'Rue de Hesbaye 206', city: 'Liège'}
+}
+
+Object.keys(person2).forEach(key => console.log(key)) // name, age, address
+
+Object.values(person2).forEach(value => console.log(value)) // Abdoulaye, 22, {street: 'Rue de Hesbaye 206, city: 'Liège'}
+
+Object.entries(person2).forEach(entries => console.log(entries)) 
+
+Object.entries(person2).forEach(([key, value]) => console.log(key)) // name, age, address
+Object.entries(person2).forEach(([key, value]) => console.log(value)) // Abdoulaye, 22, {street: 'Rue de Hesbaye 206', city: 'Liège'}
+
+Object.entries(person2).forEach(([key, value]) => console.log(`Key '${key}': value: '${value}'`)) // Key 'name': value: 'Abdoulaye'
+                                                                                                  // Key 'age': value: '22
+                                                                                                  // Key 'address': value: '[object Object]'
+
+
+
+
+
+
+                                                                                                  
