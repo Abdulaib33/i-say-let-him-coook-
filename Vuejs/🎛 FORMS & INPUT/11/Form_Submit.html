@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello - Vue</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    body {
+        background-color: Canvas;
+        color: CanvasText;
+        color-scheme: light dark;
+    }
+    
+    .done {
+        text-decoration: line-through;
+        color: gray;
+    }
+</style>
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{ test }}</h1>
+
+        <form @submit.prevent="handleSubmit">
+            <label >Name: <input type="text" v-model="formData.name"></label><br><br>
+            <label >Age: <input type="text" v-model="formData.age"></label><br><br>
+            <label >Email: <input type="text" v-mdeol="formData.age"></label><br><br>
+            <button type="submit">Submit</button>
+        </form>
+
+
+        <h3>Live Preview</h3>
+
+        <p><strong>Name:</strong> {{ formData.name }}</p>
+        <p><strong>Age:</strong> {{ formData.age }}</p>
+        <p><strong>Email:</strong>  {{ formData.email }}</p>
+    </div>
+    
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    test: "All Praise is due to Allah & Allah is the Greatest",
+                    formData: {
+                        name: "",
+                        age: "",
+                        email: ""
+                    }
+                }
+            },
+
+            methods: {
+                handleSubmit() {
+                    console.log("Form Data:" + this.formData)
+                    // clear fields
+                    this.formData = {name: "", age: "", email: ""}
+                }
+            }
+        })
+
+        app.mount("#app")
+    </script>
+
+</body>
+</html>
