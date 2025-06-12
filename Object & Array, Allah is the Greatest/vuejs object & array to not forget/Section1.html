@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object & Array Mastering by the permission of Allah</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    body {
+        background-color: Canvas;
+        color: CanvasText;
+        color-scheme: light dark;
+    }
+     section { margin-bottom: 40px; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+    input, button { margin: 5px 0; display: block; }
+
+</style>
+</head>
+<body>
+
+
+    <div id="app">
+
+        <h2>Array Modifier</h2>
+
+        <input type="text" v-model.numer="newNum" placeholder="New Number">
+        <button @click="addToStart">Add to Start</button>
+        <button @click="addToEnd">Add to End</button>
+        <button @click="removeFirst">Remove First</button>
+        <button @click="removeLast">Remove Last</button>
+
+
+        <input type="text" v-model.number="replaceIndex" placeholder="Index to Replace">
+        <input type="text" v-model.number="replaceValue" placeholder="New Value">
+        <button @click="replaceAtIndex">Replace Value</button>
+
+        <button @click="reverseArray">Reverse</button>
+
+        
+        <h4>Array:</h4>
+        <ul>
+            <li v-for="(num, i) in nums" :key="i">
+                {{ num }}
+            </li>
+        </ul>
+
+    </div>
+    
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                    person: {
+                        name: "Abdouaye",
+                        age: 22,
+                        address: {
+                            street: "Rue de Hesbaye 206",
+                            city: "Liège"
+                        },
+                        isStudent: false
+                    },
+                    nums: [2, 4, 6, 8, 10],
+                    newNum: null,
+                    replaceIndex: null,
+                    replaceValue: null,
+                }
+            },
+
+            methods: {
+
+                toggleStudent() {
+                    this.person.isStudent = !this.person.isStudent
+                },
+
+                addToStart() {
+                    if (this.newNum !== null) this.nums.unshift(this.newNum)
+                },
+                
+                addToEnd() {
+                    if (this.newNum !== null) this.nums.push(this.newNum)
+                },
+
+                removeFirst() {
+                    this.nums.shift()
+                },
+                
+                removeLast() {
+                    this.nums.pop()
+                },
+
+                replaceAtIndex() {
+                    if (this.replaceIndex >= 0 && this.replaceIndex < this.nums.length) {
+                        this.nums.splice(this.replaceIndex, 1, this.replaceValue)
+                    }
+                },
+
+                reverseArray() {
+                    let reversed = []
+                    for (let i = this.nums.lenght - 1; i >= 0; i--) {
+                        reversed.push(this.nums[i])
+                    }
+                    this.nums = reversed
+                }
+            },
+        })
+
+        app.mount("#app")
+    </script>
+
+</body>
+</html>
