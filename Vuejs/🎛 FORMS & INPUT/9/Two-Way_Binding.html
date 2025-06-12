@@ -23,6 +23,18 @@
     
     <div id="app">
         <h1>{{ test }}</h1>
+
+        <form>
+            <label>Name: <input type="text" v-model="name"></label> <br>
+            <label>Age: <input type="text" v-model="age"></label> <br>
+            <label>Email: <input type="text" v-model="email"></label><br>
+        </form>
+
+        <h3>Live preview:</h3>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Age:</strong> {{ age }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+
     </div>
 
 
@@ -30,7 +42,10 @@
         const app = Vue.createApp({
             data() {
                 return{
-                    test: "Allah is the Greatest & All Praise are Due to Allah"
+                    test: "Allah is the Greatest & All Praise are Due to Allah",
+                    name: "",
+                    age: "",
+                    email: ""
                 }
             }
         })
