@@ -43,3 +43,22 @@ console.log(filteredUsers)
 
 
 
+
+// 7. reduce() power:
+ // Use reduce() to:
+    // Sum an array: [10, 20, 30] → 60
+    // Group users by age group (<18, 18-29, 30+).
+    // Count word frequencies in an array: ["a", "b", "a"] → { a: 2, b: 1 }
+
+
+    
+
+
+
+
+
+
+
+// 8. Array transformation combo:
+    // Flatten [[1], [2, 3], [4]] using .flat()
+    // onvert [1, 2, 3] → ['#1', '#2', '#3'] using map().
