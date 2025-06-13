@@ -7,6 +7,10 @@
 
 const prices = [100, 200, 3000]
 
+// map() transforms each element in an array and returns a new array with modified values.
+
+// map() is like applying a makeover to every item in a list.
+
 const pricesWithTax = prices.map(price => price * 1.1)
 console.log(pricesWithTax)
 
@@ -29,5 +33,13 @@ const users = [
     {name: 'Abdoulaye', age: 22}
 ]
 
+// filter() removes elements that don’t meet a condition and returns a new array with only the ones that do.
+
+// filter() is like sorting the list, keeping only specific items.
+
 const filteredUsers = users.filter(user => user.age >= 18)
 console.log(filteredUsers)
+
+
+
+
