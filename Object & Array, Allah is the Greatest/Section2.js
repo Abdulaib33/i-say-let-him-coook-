@@ -52,6 +52,86 @@ console.log(filteredUsers)
 
 
     
+const nums = [10, 20, 30]
+
+const numSum = nums.reduce((acc, curr) => acc + curr)
+console.log(numSum)
+
+// Imagine the accumulator is like a car. 🚗
+
+// If the accumulator (acc) is behind, it's like someone standing in front 
+// of the car, throwing letters like baseballs. Since the car has no glass 
+// in the front, every letter lands in the back. This means we build the 
+// string in normal order.
+
+// But if we put the accumulator in front, it's like the car is driving forward, 
+// and someone is throwing letters from behind with the trunk open. Every letter 
+// lands at the front of the car, meaning we build the string in reverse order.
+
+// That's how reduce() can reverse text! 🏎️⚾
+
+
+const users1 = [
+     {name: "Alice", age: 17},
+     {name: "Bob", age: 25},
+     {name: "Charlie", age: 33},
+     {name: "Dave", age: 15}
+]
+
+
+const groups = users1.reduce((acc, curr) => {
+  const ageGroup = curr.age < 18 ? "<18" : curr.age < 30 ? "18-29" : "30+"; 
+  // our ageGroup is a ternary function, it curr.age is < 18 then "<18" if not, then "18-29" if not, then "30+"
+  acc[ageGroup] = acc[ageGroup] || []; // and here it we will have for exemple acc["<18"] = acc["<18"] || [], ok ok, it's litteraly like this the acc["<18"] = { acc["<18"] : [] }
+  // but our acc["<18"] doesnt exist since it's in a "{}", because in a "{}" we only have 'key["<18"]: value[]'
+  acc[ageGroup].push(curr.name); // so here with this push, the acc["<18"].push("Alice") will be key["<18"]: ["Alice"]
+  return acc; 
+}, {}); // it start from here, in a "{}"
+
+console.log(groups);
+// Output: { "<18": ["Alice"], "18-29": ["Bob"], "30+": ["Charlie"] }
+
+
+
+
+
+const users2 = [
+  { name: "Alice", city: "New York" },
+  { name: "Bob", city: "Paris" },
+  { name: "Charlie", city: "New York" },
+  { name: "David", city: "Tokyo" }
+];
+
+const city = users2.reduce((acc, curr) => {
+    const cityGroup = curr.city;
+    if (!acc[cityGroup]) {
+        acc[cityGroup] = []
+    }
+
+    acc[cityGroup].push(curr.name)
+    return acc
+}, {})
+
+console.log(city)
+
+
+
+
+function countWords(arr) {
+    
+    return arr.reduce((acc, word) => {
+        acc[word] = (acc[word] || 0) + 1
+        return acc
+    }, {})
+
+}
+
+
+const word = ["a", "b", "c"]
+console.log(countWords(word))
+
+
+
 
 
 
@@ -62,3 +142,14 @@ console.log(filteredUsers)
 // 8. Array transformation combo:
     // Flatten [[1], [2, 3], [4]] using .flat()
     // onvert [1, 2, 3] → ['#1', '#2', '#3'] using map().
+
+
+const numsToFlat = [[1], [2, 3], [4]].flat()
+console.log(numsToFlat) // [1, 2, 3, 4]
+
+
+
+const numsToConvert = [1, 2, 3]
+
+const converted = numsToConvert.map(value => `#${value}`)
+console.log(converted)
