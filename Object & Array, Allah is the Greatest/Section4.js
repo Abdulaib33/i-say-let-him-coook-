@@ -57,3 +57,18 @@ console.log(spreadAssign)
 
         // Object.fromEntries() → back to object
 
+
+
+const users = {
+    name: "Sam",
+    role: "admin"
+}
+
+const usersEntries = Object.entries(users) // the object is turn in a Array
+console.log(usersEntries) // [Array(2), Array(2)]
+                            // 0 : (2) ['name', 'Sam']
+                            // 1 :  (2) ['role', 'admin']
+                            // length : 2
+
+const usersEntriesBackToObject = Object.fromEntries(usersEntries) // turn the Array back to Array
+console.log(usersEntriesBackToObject) // {name: 'Sam', role: 'admin'}
