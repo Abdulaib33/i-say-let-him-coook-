@@ -1,3 +1,4 @@
+// 🔄 SECTION 5: ADVANCED PATTERNS
 // 15. Destructure deeply nested object:
 
 // const user = {
@@ -27,7 +28,12 @@ const user = {
         location: {
             city: "NYC",
             zip: "10001"
-        }
+        },
+        name: "Abdoulaye",
+        location: {
+            city: "Liège",
+            zip: "4000"
+        },
     }
 }
 
