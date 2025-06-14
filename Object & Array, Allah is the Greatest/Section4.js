@@ -9,7 +9,46 @@
         // Avoid reference sharing between original and clone.
 
 
+function deepClone(obj) {
+    // Handle null or non-object types
+    if (obj === null || typeof obj !== "object") {
+        return obj;
+    }
 
+
+    // Hanlde arrays
+    if (Array.isArray(obj)) {
+        return obj.map(item => deepClone(item))
+    }
+
+    // Handle objects
+    const cloneObj = {};
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            cloneObj[key] = deepClone(obj[key])
+        }
+    }
+
+    return cloneObj
+}
+
+
+// Example usage:
+const original = {
+    name: "Alice",
+    age: 30,
+    hobbies: ['reading', "traveling"],
+    address: {
+        city: "Paris",
+        zip: "75001"
+    }
+}
+
+const cloned = deepClone(original);
+cloned.address.city = "London"; // Changes cloned object, not the original
+
+console.log(original.address.city); // Paris (unchanged)
+console.log(cloned.address.city); // London (modified)
 
 
 
@@ -70,5 +109,5 @@ console.log(usersEntries) // [Array(2), Array(2)]
                             // 1 :  (2) ['role', 'admin']
                             // length : 2
 
-const usersEntriesBackToObject = Object.fromEntries(usersEntries) // turn the Array back to Array
+const usersEntriesBackToObject = Object.fromEntries(usersEntries) // turn the Array back to Object
 console.log(usersEntriesBackToObject) // {name: 'Sam', role: 'admin'}
