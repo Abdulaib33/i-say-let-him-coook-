@@ -152,4 +152,5 @@ console.log(numsToFlat) // [1, 2, 3, 4]
 const numsToConvert = [1, 2, 3]
 
 const converted = numsToConvert.map(value => `#${value}`)
+
 console.log(converted)
