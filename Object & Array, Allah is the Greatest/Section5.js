@@ -70,3 +70,31 @@ const mergedConfig = { ...defaultConfig, ...userConfig}
 
 console.log(rest) // {username: 'JohnDoe', email: 'john@example.com'}
 console.log(mergedConfig) // {theme: 'dark', lang: 'fr'}
+
+
+
+
+
+
+
+// 17. Optional chaining:
+
+    // Access user?.profile?.email
+
+    // Avoid errors if any layer is undefined.
+
+
+
+const user2 = {
+    profile: {
+        email: "john@example.com"
+    }
+}
+
+
+console.log(user2.profile.email) // without optional chaining
+console.log(user2?.profile?.email) // with optional chaining
+
+
+console.log(user2?.settings?.theme) // with optional chaining // undefined
+console.log(user2.settings.theme) // without optional chaining // a lot of errors
