@@ -88,10 +88,19 @@ renderUsers() // 2. That new filtered array gets saved back to users using users
 
 
 
+const products = [
+    {name: "A", price: 30},
+    {name: "B", price: 10}
+]
 
+const ascending = products.sort()
 
+console.log(ascending)
 
+const descending = products.sort()
+descending.reverse()
 
+console.log(descending)
 
 
 
@@ -107,3 +116,27 @@ renderUsers() // 2. That new filtered array gets saved back to users using users
         // ];
 
     // Result: { HR: [...], IT: [...] }
+
+
+
+
+const employees = [
+    {name: "Tom", dept: 'HR'},
+    {name: "Azna", dept: "IT"},
+    {name: "Zoe", dept: "HR"}
+]
+
+
+
+const grouped = employees.reduce((acc, curr) => {
+
+    if (!acc[curr.dept]) {
+        acc[curr.dept] = []
+    }
+
+    acc[curr.dept].push(curr)
+    return acc;
+
+}, {})
+
+console.log(grouped)
