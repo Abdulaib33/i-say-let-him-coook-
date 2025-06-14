@@ -24,16 +24,11 @@
 
 const user = {
     profile: {
-        name: "Tome",
+        name: ["Tome", "Abdoulaye"],
         location: {
-            city: "NYC",
-            zip: "10001"
-        },
-        name: "Abdoulaye",
-        location: {
-            city: "Liège",
-            zip: "4000"
-        },
+            city: ["NYC", "Liège"],
+            zip: ["10001", "4000"]
+        }
     }
 }
 
