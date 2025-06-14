@@ -120,23 +120,3 @@ console.log(descending)
 
 
 
-const employees = [
-    {name: "Tom", dept: 'HR'},
-    {name: "Azna", dept: "IT"},
-    {name: "Zoe", dept: "HR"}
-]
-
-
-
-const grouped = employees.reduce((acc, curr) => {
-
-    if (!acc[curr.dept]) {
-        acc[curr.dept] = []
-    }
-
-    acc[curr.dept].push(curr)
-    return acc;
-
-}, {})
-
-console.log(grouped)
