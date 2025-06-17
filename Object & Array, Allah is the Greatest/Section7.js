@@ -175,13 +175,17 @@ function updateQuantity(id, newQty) {
 }
 
 function calculateTotal() {
-    return cartItems.reduce((total, item) => total + total.price * item.qty, 0)
+    return cartItems.reduce((total, item) => total + item.price * item.qty, 0)
 }
 
 
 // Example usage
-
-
+addItem("Laptop", 999.99, 1)
+// addItem("Mouse", 49.99, 2)
+// removeItem(1)
+// updateQuantity(2, 3)
+console.log("Cart Items:", cartItems)
+console.log("Total Price:", calculateTotal())
 
 
 
