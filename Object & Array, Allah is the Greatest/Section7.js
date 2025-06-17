@@ -251,3 +251,19 @@ console.log("Sorted by Registration Date:", sortByRegistrationDate()) // Most re
 
     // Output: { yes: 2, no: 1, maybe: 1 }
 
+
+
+function analyzeSurvey(response) {
+    const result = response.reduce((count, response) => {
+        count[response] = (count[response] || 0) + 1; // Increase the count for each response
+        return count;
+    }, {}) // Initial empty object
+
+    return result;
+}
+
+
+// 🚀 Example Usage:
+
+const responses = ["yes", "no", "yes", "maybe", "no", "yes", "maybe", "yes"]
+console.log(analyzeSurvey(responses))
