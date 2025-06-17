@@ -187,7 +187,7 @@ addItem("Laptop", 999.99, 1)
 console.log("Cart Items:", cartItems)
 console.log("Total Price:", calculateTotal())
 
-
+// always at the top of the leaderboard
 
 
 // 23. 🔍 User Search & Filter
@@ -201,11 +201,44 @@ console.log("Total Price:", calculateTotal())
 
 
 
+const users = [
+    {id: 1, name: "Alice", active: true, registered: "2025-05-10"},
+    {id: 2, name: "Bob", active: true, registered: "2025-06-10"},
+    {id: 3, name: "Charlie", active: true, registered: "2025-07-10"},
+    {id: 4, name: "Alice", active: true, registered: "2025-08-10"},
+]
+
+
+// 🔍 Live Search (Partial March)
+function searchUsers(query) {
+    return users.filter(user => user.name.toLowerCase().includes(query.toLowerCase()))
+}
+
+
+// ✅ Filter by Active Status
+function filterActiveUsers() {
+    return users.filter(user => user.active)
+}
+
+
+// 🔀 Sort by Name (A-Z)
+function sortByName() {
+    return [...users].sort((a, b) => a.name.localeCompare(b.name))
+}
+
+
+// 🗓️ Sort by Registration Date (Newest First)
+function sortByRegistrationDate() {
+    return [...users].sort((a, b) => new Date(b.registered) - new Date(a.registered))
+}
 
 
 
-
-
+// 🚀 Example Usage:
+console.log("Search Result for 'bo':", searchUsers("bo")) // Matches "Bob"
+console.log("Active Users:", filterActiveUsers()) // Only active users
+console.log("Sorted by Name:", sortByName()) // Alice, Bob, Charlie, David
+console.log("Sorted by Registration Date:", sortByRegistrationDate()) // Most recent first
 
 
 
