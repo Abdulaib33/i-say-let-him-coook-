@@ -13,10 +13,122 @@
 
 
 
+//     const todosList = [
+//         {id: 1, text: "Read Al Quran", done: false},
+//     ]
+
+// // Function to add a new todo
+// function addTodo(text) {
+//     const newTodo = {
+//         id: todosList.length ? todosList[todosList.length - 1].id + 1 : 1, 
+//         text: text,
+//         done: false
+//     }
+//     todosList.push(newTodo)
+// }
+
+
+
+// // Function to toggle 'done' status
+// function toggleDone(id) {
+//     const todo = todosList.find(todo => todo.id == id)
+//     if (todo) {
+//         todo.done = !todo.done
+//     }
+// }
+
+
+// // Function to remove a todo 
+// function removeTodo(id) {
+//     const index = todosList.findIndex(todo => todo.id === id)
+//     if (index !== -1) {
+//         todosList.splice(index, 1)
+//     }
+// }
+
+
+// // Function to list active todos (not done yet)
+// function listActiveTodos() {
+//     return todosList.filter(todo => !todo.done)
+// }
+
+
+// // Example usage:
+// addTodo("Learn Javascript")
+// addTodo("Exercice")
+// toggleDone(1)
+// removeTodo(2)
+// console.log(listActiveTodos())
 
 
 
 
+
+
+// DISPLAYING OUR CRD in HTML 
+
+
+const todosListHTML = [
+
+]
+
+function renderTodos() {
+    const ul = document.getElementById("todoList")
+    ul.innerHTML = ""; // Clear existing list
+
+    todosListHTML.forEach(todo => {
+
+        const li = document.createElement('li')
+        li.textContent = todo.text;
+        li.style.textDecoration = todo.done ? "line-through" : "none" // Strikethrough if done
+        li.onclick = () => toggleDoneHTML(todo.done) // Toggle done on click
+
+
+        const removeButton = document.createElement('button')
+        removeButton.textContent = "DELETE/Remove"
+        removeButton.onclick = (event) => {
+            event.stopPropagation() // Prevent triggering toggle
+            removeTodo(todo.id)
+        }
+
+        li.appendChild(removeButton)
+        ul.appendChild(li)
+
+    })
+
+}
+
+    function addTodoListHTML() {
+        const input = document.getElementById("todoInput")
+        if (input.value.trim() === "") return; // Prevent empty todos
+
+        const newTodoHTML = {
+            id: todosListHTML.length ? todosListHTML[todosListHTML.length -1].id +1 : 1,
+            text: input.value.trim(),
+            done: false
+        }
+
+        todosListHTML.push(newTodoHTML)
+        input.value = "" // Clear input
+        renderTodos();
+    }
+
+    function toggleDoneHTML(id) {
+        const todo = todosListHTML.find(todo => todo.id === id)
+        if (todo) {
+            todo.done = !todo.done
+            renderTodos()
+        }
+    }
+
+
+    function removeTodo(id) {
+        const index = todosListHTML.findIndex(todo => todo.id === id)
+        if (index !== -1) {
+            todosListHTML.splice(index, 1)
+            renderTodos()
+        }
+    }
 
 
 
