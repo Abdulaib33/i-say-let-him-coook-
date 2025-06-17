@@ -143,11 +143,43 @@ function renderTodos() {
 
 
 
+const cartItems = [
+
+    {id: 1, title: "Sample Item", price: 10.99, qty: 1},
+
+]
 
 
+function addItem(title, price, qty = 1) {
+    const newItem = {
+        id: cartItems.length ? cartItems[cartItems.length -1].id + 1: 1,
+        title,
+        price,
+        qty
+    }
+    cartItems.push(newItem)
+}
+
+function removeItem(id) {
+    const index = cartItems.findIndex(item => item.id ===id)
+    if (index !== -1) {
+        cartItems.splice(index, 1)
+    }
+}
+
+function updateQuantity(id, newQty) {
+    const item = cartItems.find(item => item.id === id)
+    if (item && newQty > 0) {
+        item.qty = newQty;
+    }
+}
+
+function calculateTotal() {
+    return cartItems.reduce((total, item) => total + total.price * item.qty, 0)
+}
 
 
-
+// Example usage
 
 
 
