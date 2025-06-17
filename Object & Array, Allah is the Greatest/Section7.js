@@ -152,6 +152,7 @@ const cartItems = [
 
 function addItem(title, price, qty = 1) {
     const newItem = {
+        // it's alway like this to incriment a or add id
         id: cartItems.length ? cartItems[cartItems.length -1].id + 1: 1,
         title,
         price,
