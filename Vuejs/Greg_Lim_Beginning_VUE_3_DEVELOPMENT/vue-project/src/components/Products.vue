@@ -20,7 +20,8 @@
 
 <template>
 
-    <div>
+    <div> <!-- this is just to not get error of eslint-->
+
         <h1>Products: {{ category }} by {{ username }}</h1>
         <!-- <h1>{{ category + ' by ' + username }}</h1> <br> -->
         <h1>{{ username ? username : 'no username' }}</h1> <!-- if username, display the username or else display 'no username'-->
@@ -31,6 +32,7 @@
             <h3>{{ product.id }}: {{ product.name }}</h3>
 
         </div>
+
     </div>
 
 </template>
