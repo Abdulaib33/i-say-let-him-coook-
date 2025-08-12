@@ -22,7 +22,7 @@
     
 
     // Step 1 — GET all
-    const posts = await ky.get(API).json()
+    // const posts = await ky.get(API).json()
     // log(posts)
     // for (let i = 0; i < posts.length; i++) {
     //     log(posts[i])
@@ -30,7 +30,7 @@
 
 
     // Step 2 — GET one
-    const post = await ky.get(`${API}/1`).json()
+    // const post = await ky.get(`${API}/1`).json()
     // log(post)                       // {
     //                                     "userId": 1,
     //                                     "id": 1,
@@ -85,6 +85,84 @@
     // Step 6 — DELETE
     await ky.delete(`${API}/1`)
     // log({message: "Deleted post 1"})
+
+
+
+
+
+// 7. Handle errors gracefully
+    // Goal: If the API call fails (post doesn’t exist), your program shouldn’t crash.
+    // Plan:
+
+    //     Pick an ID you know doesn’t exist, like 9999.
+
+    //     Wrap the ky.get() call in try...catch.
+
+    //     If it succeeds, log the post.
+
+    //     If it fails, log { error: "Post not found" }.
+
+    try {
+
+        // const post = await ky.get(API + '9999').json()
+        // log(post)
+
+    } catch {
+        // log({error: 'Post not found'})
+    }
+
+
+
+
+
+    // 8. Chain requests
+    //     Goal: Do one request, then use its result in the next request.
+    //     Plan:
+
+            // Make a POST request to create a new post.
+
+            // Extract the id from the response.
+
+            // Use that id in a GET request to fetch the same post.
+
+            // Log both results.
+
+    // const created = await ky.post(API, {
+    //     json: {title: "New", body: "test", userId: 2}
+    // }).json()
+    // log(created)
+
+    // const fetched = await ky.get(API + '/' + created.id).json()
+    // log(fetched)
+
+
+
+
+    // 9. Multiple GETs in parallel
+    //     Goal: Fetch multiple posts at the same time instead of one by one.
+    //     Plan:
+
+    //         Create an array of IDs, e.g., [3, 4, 5].
+
+    //         Use map() to turn them into ky.get(...).json() promises.
+
+    //         Use Promise.all() to wait for all requests.
+
+    //         Log all posts together.
+
+
+    const ids = [3, 4, 5]
+    const promises = ids.map(id => ky.get(API + '/' + id).json())
+    const results = await Promise.all(promises)
+    log(results)
+
+    for ( const result of results) { 
+        log({title: result.title, body: result.body})
+    }
+
+
+
+    
 
   </script>
 
