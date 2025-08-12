@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ky.js REST API Practice</title>
+</head>
+<body>
+  <h1>REST API with Ky.js</h1>
+  <pre id="output"></pre>
+
+  <script type="module">
+    import ky from 'https://cdn.skypack.dev/ky';
+
+    const API = 'https://jsonplaceholder.typicode.com/posts';
+    const out = document.getElementById('output');
+
+    function log(data) {
+      out.textContent += JSON.stringify(data, null, 2) + '\n\n';
+    }
+
+    // Start here with one exercise at a time
+    
+
+    // Step 1 — GET all
+    const posts = await ky.get(API).json()
+    // log(posts)
+    // for (let i = 0; i < posts.length; i++) {
+    //     log(posts[i])
+    // }
+
+
+    // Step 2 — GET one
+    const post = await ky.get(`${API}/1`).json()
+    // log(post)                       // {
+    //                                     "userId": 1,
+    //                                     "id": 1,
+    //                                     "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    //                                     "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    //                                 }
+
+
+
+    // Step 3 — POST (create)
+    const newPost = await ky.post(API, {
+        json: {title: 'hello', body: 'ky.js test', userId: 1}
+    }).json()
+    // // log(newPost)             {
+    //                                 "title": "hello",
+    //                                 "body": "ky.js test",
+    //                                 "userId": 1,
+    //                                 "id": 101
+    //                             }
+
+
+
+    // Step 4 — PUT (replace all fields)
+    const updated = await ky.put(`${API}/1`, {
+        json: {id: 1, title: 'Replaced', body: 'New content', userId: 1}
+    }).json()
+    // log(updated)                           {
+    //                                             "id": 1,
+    //                                             "title": "Replaced",
+    //                                             "body": "New content",
+    //                                             "userId": 1
+    //                                         }
+
+
+
+
+
+    // Step 5 — PATCH (update some fields)
+    const patched = await ky.patch(`${API}/1`, {
+        json:{title: 'Patched Title'}
+    }).json()
+    // log(patched)                              {
+    //                                             "userId": 1,
+    //                                             "id": 1,
+    //                                             "title": "Patched Title",
+    //                                             "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    //                                         }
+
+
+
+
+    // Step 6 — DELETE
+    await ky.delete(`${API}/1`)
+    // log({message: "Deleted post 1"})
+
+  </script>
+
+  <style>
+    body {
+        background-color: black;
+        color: wheat;
+    }
+  </style>
+</body>
+</html>

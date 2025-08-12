@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RESTful API Ky.js Practice</title>
+</head>
+<body>
+  <h1>Ky.js REST API Practice</h1>
+  <pre id="output"></pre>
+
+  <script type="module">
+    import ky from 'https://cdn.skypack.dev/ky';
+
+    const API = 'https://jsonplaceholder.typicode.com/posts';
+    const output = document.getElementById('output');
+
+    function log(title, data) {
+      output.textContent += `\n\n🔹 ${title}:\n${JSON.stringify(data, null, 2)}`;
+    }
+
+
+    // LEVEL 1 — Core CRUD practice
+    // These are direct one-method-per-function practice drills.
+
+
+      // 1. GET (Read All)
+
+      //   Goal: Fetch all posts, but display only their title fields as a numbered list.
+
+      //   Steps:
+
+      //     Use ky.get(API).json().
+
+      //     Slice the array to the first 5 posts.
+
+      //     Loop over them and log:
+
+
+
+    // Place your exercise functions here
+    // Example: 
+    async function getAll() {
+      // const data = await ky.get(API).json();
+      // log('GET all', data.slice(0, 2));
+    }
+
+
+
+    // Run exercises here
+    getAll();
+  </script>
+</body>
+</html>
+
+
+
+<!-- 1. GET (Read All)
+
+      Goal: Fetch all posts, but display only their title fields as a numbered list.
+
+      Steps:
+
+        Use ky.get(API).json().
+
+        Slice the array to the first 5 posts.
+
+        Loop over them and log:
+
+
+        1. title of first post
+        2. title of second post
+        Do not show body or other properties.
+
+
+2. GET (Read One)
+
+    Goal: Fetch a single post by a given ID.
+
+    Steps:
+
+      Store let targetId = 7;
+
+      Fetch API + '/' + targetId.
+
+      Log only:
+
+
+      Title: ...
+      Body: ...
+
+
+3. POST (Create)
+
+    Goal: Create a new post.
+
+    Steps:
+
+      Use ky.post(API, { json: {...} }).
+
+      Send { title: 'My Post', body: 'Some content', userId: 1 }.
+
+      Log the new post’s ID returned by the API.
+
+
+4. PUT (Full Update)
+
+    Goal: Replace all fields of an existing post.
+
+    Steps:
+
+      Pick id = 1.
+
+      PUT to API + '/1' with:
+
+      json
+
+      { id: 1, title: 'Replaced Title', body: 'Completely new body', userId: 1 }
+      Log the full updated object.
+
+
+5. PATCH (Partial Update)
+
+    Goal: Update only the title of a post.
+
+    Steps:
+
+      Pick id = 1.
+
+      PATCH to API + '/1' with { title: 'Updated Only Title' }.
+
+      Log the response and check body is unchanged.
+
+
+6. DELETE
+
+    Goal: Remove a post.
+
+    Steps:
+
+      Pick id = 1.
+
+      ky.delete(API + '/1').
+
+      Log "Deleted post 1" if status is 200 or 204.
+
+      LEVEL 2 — Response handling & variations
+      Now you combine fundamentals with error handling and variations.
+
+
+7. Handle Errors Gracefully
+
+    Goal: Avoid crashes when the API returns an error.
+
+    Steps:
+
+      Pick an impossible ID: id = 9999.
+
+      Wrap await ky.get(API + '/9999') in try...catch.
+
+      If 404, log "Post not found" instead of throwing.
+
+
+8. Chain Requests
+
+    Goal: Do one request, then use its result in the next.
+
+    Steps:
+
+      Create a post with POST.
+
+      Extract its new id from the response.
+
+      Immediately GET that new post to confirm it exists.
+
+      Log both results.
+
+
+9. Multiple GETs in Parallel
+
+  Goal: Fetch multiple posts at the same time.
+
+  Steps:
+
+    Create array of IDs: [3, 4, 5].
+
+    Use Promise.all() with ky.get(...).json() for each.
+
+    Log an array of results.
+
+10. Pagination Simulation
+
+  Goal: Mimic API pagination on client side.
+
+  Steps:
+
+      Fetch all posts with GET.
+
+      Group them into arrays of 3.
+
+      For each group, log "Page 1:", "Page 2:", etc., with their titles.
+
+      LEVEL 3 — Extra mastery
+      These simulate dynamic, batch, and chained operations.
+
+
+11. Dynamic ID from User Input
+
+    Goal: Ask user for an ID and fetch that post.
+
+    Steps:
+
+      Use let id = prompt('Enter post ID:');
+
+      Fetch that ID and log the title + body.
+
+      If no post found, log "No such post".
+
+
+12. Search Simulation
+
+    Goal: Filter posts by keyword in the title.
+
+    Steps:
+
+      Fetch all posts.
+
+      Filter where title.includes('qui').
+
+      Log matching titles.
+
+
+13. Batch Create
+
+    Goal: Create multiple posts in a loop.
+
+    Steps:
+
+      Loop from 1 to 3.
+
+      POST { title: 'Post ' + i, body: 'Body ' + i, userId: 1 }.
+
+      Log each returned id.
+
+
+14. Update After Create
+
+    Goal: Create a post and then immediately update it.
+
+    Steps:
+
+      POST a new post.
+
+      PATCH it with { title: 'Updated After Create' }.
+
+      Log before & after results.
+
+
+15. Delete All in Range
+
+    Goal: Delete several posts by ID.
+
+    Steps:
+
+      IDs = [1, 2, 3].
+
+      Loop and call DELETE for each.
+
+      Log "Deleted ID: x" after each.
+      -->
