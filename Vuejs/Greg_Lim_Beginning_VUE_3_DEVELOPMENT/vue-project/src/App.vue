@@ -1,13 +1,13 @@
 <script>
 
 import Products from "./components/Products.vue"
-import Ratings from "./components/Rating.vue";
+import initialRating from "./components/Rating.vue";
 
 export default {
   components:{
     Products,
 
-    Ratings
+    initialRating
     
   },
   data() {
@@ -27,11 +27,11 @@ export default {
 
       <!-- Rating Component -->
       <div>
-        <Ratings rating="1"/>
-        <Ratings rating="2"/>
-        <Ratings rating="3"/>
-        <Ratings rating="4"/>
-        <Ratings rating="5"/>
+        <Ratings initialRating="1"/>
+        <Ratings initialRating="2"/>
+        <Ratings initialRating="3"/>
+        <Ratings initialRating="4"/>
+        <Ratings initialRating="5"/>
       </div>
     </div>
 </template>

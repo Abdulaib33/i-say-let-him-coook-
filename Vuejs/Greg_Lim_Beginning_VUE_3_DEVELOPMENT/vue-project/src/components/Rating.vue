@@ -1,6 +1,13 @@
 <script>
 export default{
-    props: ['rating']
+    props: ['initialRating'],
+    data(){
+        return{
+            // rating only uses this.initialRating as the initial vlaue;
+            // it is disconnected from future prop updates.
+            rating: this.initialRating
+        }
+    }
 }
 </script>
 
@@ -18,4 +25,4 @@ export default{
             <i v-if="rating >=5" class="bi bi-star-fill"></i>
             <i v-else class="bi bi-star"></i>
     </div>
-</template>
+</template> 
