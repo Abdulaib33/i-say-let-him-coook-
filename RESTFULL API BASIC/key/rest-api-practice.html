@@ -54,9 +54,9 @@
 
 
     // Step 4 — PUT (replace all fields)
-    const updated = await ky.put(`${API}/1`, {
-        json: {id: 1, title: 'Replaced', body: 'New content', userId: 1}
-    }).json()
+    // const updated = await ky.put(`${API}/1`, {
+    //     json: {id: 1, title: 'Replaced', body: 'New content', userId: 1}
+    // }).json()
     // log(updated)                           {
     //                                             "id": 1,
     //                                             "title": "Replaced",
@@ -151,18 +151,165 @@
     //         Log all posts together.
 
 
-    const ids = [3, 4, 5]
-    const promises = ids.map(id => ky.get(API + '/' + id).json())
-    const results = await Promise.all(promises)
-    log(results)
+    // const ids = [3, 4, 5]
+    // const promises = ids.map(id => ky.get(API + '/' + id).json())
+    // const results = await Promise.all(promises)
+    // log(results)
 
-    for ( const result of results) { 
-        log({title: result.title, body: result.body})
+    // for ( const result of results) { 
+    //     log({title: result.title, body: result.body})
+    // }
+
+
+
+
+    // 10. Pagination simulation
+    //     Goal: Split a big list into smaller “pages.”
+    //     Plan:
+
+    //         Fetch all posts.
+
+    //         Choose a page size (e.g., 3 posts per page).
+
+    //         Use a loop to slice the array into chunks.
+
+    //         Log each page with its number and titles.
+
+    // const posts = await ky.get(API).json()
+    const pageSize = 3
+    // for (let i = 0; i < posts.length; i += pageSize) {
+    //     const page = posts.slice(i, i + pageSize)
+    //     // log({ pageNumber: i / pageSize + 1, titles: page.map(p => p.title)})
+    //     // log({ 
+    //     //     pageNumber: i / pageSize + 1,
+    //     //      titles: page.map(p => p.title)
+    //     //     })
+    // }
+    
+
+
+
+
+    // 11. Dynamic ID from user input
+    //     Goal: Let the user choose the ID to fetch.
+    //     Plan:
+
+    //         Use prompt() to ask for an ID.
+
+    //         Fetch the post with that ID.
+
+    //         If success → log it.
+
+    //         If failure → log { error: "No such post" }.
+
+
+    // const id = prompt("Enter post ID:")
+    try {
+
+        const post = await ky.get(API + "/" + id).json()
+        // log(post)
+
+    } catch {
+
+        // log({error: "No such post"})
+
     }
 
 
 
-    
+
+
+
+// 12. Search simulation
+//     Goal: Find posts that contain a certain word in their title.
+//     Plan:
+
+//         Fetch all posts.
+
+//         Filter ones where title includes "qui".
+
+//         Log just the matching titles.
+
+
+    // const posts = await ky.get(API).json()
+    // const matches = posts
+    //     .filter(p => p.title.includes("i")
+    //     .map(p => p.title))
+    // log(matches)
+
+
+    const matches = (await ky.get(API).json()).filter(p => p.title.includes("qui")).map(p => p.title);
+    // log(matches);
+
+
+
+
+
+
+    // 3. Batch create
+    //     Goal: Create several posts in a row.
+    //     Plan:
+
+    //         Loop from 1 to 3.
+
+    //         In each loop, POST a new post with unique title.
+
+    //         Log the ID returned.
+
+
+    for (let i = 1; i <= 3; i++) {
+        // const created = await ky.post(API, {
+        //     json: {title: `Post ${i}`, body: "Batch", userId: 1}
+        // }).json()
+        // log({createdId: created.id})
+    }
+
+
+
+    // 14. Update after create
+    //     Goal: Create a post, then immediately update it.
+    //     Plan:
+
+    //         POST a new post and store its ID.
+
+    //         PATCH the same post with a new title.
+
+    //         Log both before and after.
+
+    // const created = await ky.post(API, {
+    //     json: {title: "Before", body: "test", userId: 1}
+    // }).json()
+    // log(created)
+
+    // const updated = await ky.patch(API + "/" + created.id, {
+    //     json: {title: "After"}
+    // }).json()
+    // log(updated)
+
+
+
+
+
+    // 15. Delete all in range
+    //     Goal: Delete several posts in sequence.
+    //     Plan:
+
+    //         Make an array [1, 2, 3].
+
+    //         Loop over it.
+
+    //         DELETE each post.
+
+    //         Log a confirmation message.
+
+
+
+    const ids = [1, 2, 3]
+    for (const id of ids) {
+        await ky.delete(API + '/' + id)
+        log({deletedId: id})
+    }
+
 
   </script>
 

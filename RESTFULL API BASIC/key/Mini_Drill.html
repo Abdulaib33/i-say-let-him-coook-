@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map + Promise.all Drill</title>
+</head>
+<body>
+
+    <h1>Map + Promise.all Drill</h1>
+    <pre id="output">Loading...</pre>
+
+    
+    <script type="module">
+        import ky from "https://cdn.skypack.dev/ky"
+
+        const API = "https://jsonplaceholder.typicode.com/posts"
+        const output = document.getElementById("output")
+
+        async function drill() {
+            const ids = [1, 2, 3]
+
+        // STEP 1: map() turns IDs into promises
+        const requests = ids.map(id => ky.get(`${API}/${id}`).json())
+
+        // STEP 2: Promise.all waits for all of them
+        const results = await Promise.all(requests)
+
+        // STEP 3: Log them
+        output.textContent = JSON.stringify(results, null, 2)
+        }
+
+        drill().catch(err => {
+            output.textContent = `ERROR : ${err.message}`
+        })
+        
+
+
+    </script>
+
+    
+</body>
+</html>
